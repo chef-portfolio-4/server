@@ -16,12 +16,12 @@ function findBy(filter) {
 }
 
 async function add(user) {
-  const [id] = await db('chefs').insert(user);
+  const [id] = await db('chefs').insert(user, "id");
 
-  return findById(id);
+  return findById(id[0]);
 }
 
-function findById(id) {
+function findById(id) { 
   return db('chefs')
     .where({ id })
     .first();
