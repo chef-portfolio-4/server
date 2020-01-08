@@ -8,7 +8,8 @@ module.exports = {
   update,
   getAll,
   findRecipeSteps,
-  findRecipeIngredients
+  findRecipeIngredients,
+  addIngredient
 };
 function find() {
     return db('recipes');
@@ -30,16 +31,8 @@ function findRecipeSteps(id) {
       .innerJoin('ingredients as i', 'ingredient_id', 'id')
       .where('recipe_id', id)
   }
-  // function findIngredients(id){
-  //   return db('ingredients')
-  //     .where('ingredients_id, id)
-  // }
-  // function findById(id) {
-  //   return db("steps")
-  //     .leftJoin("recipes", "steps.recipe_id",  "recipes.id")
-  //     .where({ "recipes.id": id })
-  // }
 
+  
   function getAll(id){
     return db('recipes as r')
       .select('r.name', 'r.description' ,'r.meal-type' , 'r.time', 's.title', 's.order', 's.directions')
@@ -69,3 +62,16 @@ async function update(id, changes){
       .update(changes)
     return findById(id[0])
   }
+
+  function connectTables(recipe_id, ingredient_id){
+    return db('recipe_ingredients')
+      .insert({recipe_id: recipe_id, ingredient_id: ingredient_id})
+  }
+
+ function addIngredient(ingredient, recipe_id) {
+  return db('ingredients').insert(ingredient, 'id')
+  .then(ingredient_id => {
+    return connectTables(recipe_id, ingredient_id[0])
+  })
+  
+}
