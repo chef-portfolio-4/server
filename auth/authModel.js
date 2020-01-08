@@ -5,6 +5,7 @@ module.exports = {
   find,
   findBy,
   findById,
+  updateProfile
 };
 
 function find() {
@@ -25,4 +26,21 @@ function findById(id) {
   return db('chefs')
     .where({ id })
     .first();
+}
+
+// async function updateProfile(changes, id){
+//   await db('chefs')
+//     .where({ id})
+//     .update(changes, 'id')
+//     .then(() => {
+//       return findById(id[0])
+//     })
+  
+// }
+
+async function updateProfile(id, changes){
+  await db('chefs')
+    .where({id: id})
+    .update(changes)
+  return findById(id[0])
 }

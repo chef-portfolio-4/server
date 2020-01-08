@@ -6,12 +6,12 @@ exports.up = function(knex) {
       chef
       .string('username', 255)
       .notNullable()
-      .unique();
+      // .unique();
 
         chef.string('password', 255).notNullable();
         chef.string('name', 26).notNullable();
-
-        chef.string('location' , 120).notNullable
+        chef.string('email', 25).notNullable()
+        chef.string('location' , 120).notNullable()
   })
 
   .createTable('recipes', recipe => {
@@ -23,37 +23,56 @@ exports.up = function(knex) {
     
 
     recipe.string('description', 255).notNullable();
-    recipe.string('Full', 26).notNullable();
-
-    recipe.string('location' , 120).notNullable
+    
+    recipe.string('meal-type', 20).notNullable();
+    recipe
+      .integer('chef_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('chefs')
+                .onDelete('CASCADE')
+                .onUpdate('CASCADE');
 })
 
 .createTable('steps', step => {
   step.increments()
 
   step
-  .string('username', 255)
+  .string('title', 255)
   .notNullable()
-  .unique();
+  
+  step.string('order', 25).notNullable();
 
-    step.string('password', 255).notNullable();
-    step.string('Full', 26).notNullable();
+    step.string('description', 255).notNullable();
+    
+    step.string('time', 26).notNullable();
 
-    step.string('location' , 120).notNullable
+    step.string('recipe_id', 40).unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('recipes')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE');
 })
 
-.createTable('ingridents', ingrident => {
-  ingrident.increments()
+.createTable('ingredients', ingredient => {
+  ingredient.increments()
 
-  ingrident
-  .string('username', 255)
+  ingredient
+  .string('name', 40)
   .notNullable()
   .unique();
 
-  ingrident.string('password', 255).notNullable();
-  ingrident.string('Full', 26).notNullable();
+})
 
-    ingrident.string('location' , 120).notNullable
+.createTable('recipe_ingredients', tbl => {
+  tbl.primary(["recipe_id", "ingrident_id"])
+  
+  tbl.integer('recipe_id').unsigned().notNullable().references('id').inTable('recipes').onUpdate('CASCADE').onDelete('CASCADE')
+
+  tbl.integer('ingrident_id').unsigned().notNullable().references('id').inTable('ingridents').onUpdate('CASCADE').onDelete('CASCADE')
+
 })
 };
 
@@ -62,5 +81,6 @@ exports.down = function(knex) {
     .dropTableIfExists('chefs')
     .dropTableIfExists('recipes')
     .dropTableIfExists('steps')
-    .dropTableIfExists('ingridents');
+    .dropTableIfExists('ingridents')
+    .dropTableIfExists('recipe_ingredients')
 };
