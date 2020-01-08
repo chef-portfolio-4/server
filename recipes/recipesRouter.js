@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Recipes = require('./recipesModel')
-router.get('chef/:id', (req, res) => {
+router.get('/chef/:id', (req, res) => {
     
     let id = req.params.id
     Recipes.getChefRecipes(id)
@@ -55,10 +55,10 @@ router.get('/steps/:id', (req, res) => {
   });
 });
 
-router.post('/update/:id', (req, res) => {
+router.post('/:id', (req, res) => {
   let recipe = req.body;
     let id = req.params.id
-  Chefs.updateProfile(id, recipe)
+  Recipes.updateProfile(id, recipe)
     .then(saved => {
       res.status(201).json(saved);
       console.log
@@ -68,6 +68,35 @@ router.post('/update/:id', (req, res) => {
       console.log(error, "error")
     });
 });
+
+router.post('/:id', (req, res) => {
+  let recipe = req.body;
+    let id = req.params.id
+  Recipes.updateProfile(id, recipe)
+    .then(saved => {
+      res.status(201).json(saved);
+      console.log
+    })
+    .catch(error => {
+      res.status(500).json(error);
+      console.log(error, "error")
+    });
+});
+
+router.post('/:id/ingredients', (req, res) => {
+  let ingredient = req.body;
+    let id = req.params.id
+  Recipes.addIngredient(ingredient, id)
+    .then(saved => {
+      res.status(201).json(saved);
+      console.log('its works')
+    })
+    .catch(error => {
+      res.status(500).json(error);
+      console.log(error, "error")
+    });
+});
+
 
 
 
