@@ -50,7 +50,7 @@ exports.up = function(knex) {
     step.string('directions', 255).notNullable();
     
 
-    step.string('recipe_id', 40).unsigned()
+    step.integer('recipe_id').unsigned()
       .notNullable()
       .references('id')
       .inTable('recipes')
