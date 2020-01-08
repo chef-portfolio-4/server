@@ -25,6 +25,9 @@ exports.up = function(knex) {
     recipe.string('description', 255).notNullable();
     
     recipe.string('meal-type', 20).notNullable();
+
+    recipe.string('time', 20).notNullable()
+
     recipe
       .integer('chef_id')
                 .unsigned()
@@ -44,9 +47,8 @@ exports.up = function(knex) {
   
   step.string('order', 25).notNullable();
 
-    step.string('description', 255).notNullable();
+    step.string('directions', 255).notNullable();
     
-    step.string('time', 26).notNullable();
 
     step.string('recipe_id', 40).unsigned()
       .notNullable()
@@ -67,11 +69,11 @@ exports.up = function(knex) {
 })
 
 .createTable('recipe_ingredients', tbl => {
-  tbl.primary(["recipe_id", "ingrident_id"])
+  tbl.primary(["recipe_id", "ingredient_id"])
   
   tbl.integer('recipe_id').unsigned().notNullable().references('id').inTable('recipes').onUpdate('CASCADE').onDelete('CASCADE')
 
-  tbl.integer('ingrident_id').unsigned().notNullable().references('id').inTable('ingridents').onUpdate('CASCADE').onDelete('CASCADE')
+  tbl.integer('ingredient_id').unsigned().notNullable().references('id').inTable('ingredients').onUpdate('CASCADE').onDelete('CASCADE')
 
 })
 };

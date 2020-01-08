@@ -25,17 +25,34 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async(req, res) => {
     
     let id = req.params.id
-    Recipes.findById(id)
-    .then(recipe => {
-      res.status(201).json(recipe);
-    })
-    .catch(error => {
+
+    try{
+      const recipe = await Recipes.findById(id)
+      const steps = await Recipes.findRecipeSteps(id)
+      const ingredients = await Recipes.findRecipeIngredients(id)
+      res.status(200).json({...recipe, steps, ingredients});
+    }
+   
+    catch(error) {
       res.status(500).json(error);
       console.log(error, "error")
-    });
+    };
+});
+
+router.get('/steps/:id', (req, res) => {
+    
+  let id = req.params.id
+  Recipes.getAll(id)
+  .then(recipe => {
+    res.status(200).json(recipe);
+  })
+  .catch(error => {
+    res.status(500).json(error);
+    console.log(error, "error")
+  });
 });
 
 router.post('/update/:id', (req, res) => {
