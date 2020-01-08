@@ -4,7 +4,9 @@ const helmet = require('helmet');
 
 const authenticate = require('./auth/authMiddleware');
 const authRouter = require('./auth/authRouter.js');
-// const reciepeRouter = require('../jokes/jokes-router.js');
+const profileRouter = require('./auth/authProfileRouter')
+const recipeRouter = require('./recipes/recipesRouter')
+const stepsRouter = require('./steps/stepsRouter')
 
 const server = express();
 
@@ -13,7 +15,9 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
-// server.use('/api/jokes', authenticate, jokesRouter);
+server.use('/api/profile', profileRouter);
+server.use('/api/recipes', recipeRouter);
+server.use('/api/steps', stepsRouter);
 server.get('/', (req, res) => {
     console.log("its alive")
 })
