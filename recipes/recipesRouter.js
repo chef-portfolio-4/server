@@ -69,19 +69,7 @@ router.post('/:id', (req, res) => {
     });
 });
 
-router.post('/:id', (req, res) => {
-  let recipe = req.body;
-    let id = req.params.id
-  Recipes.updateProfile(id, recipe)
-    .then(saved => {
-      res.status(201).json(saved);
-      console.log
-    })
-    .catch(error => {
-      res.status(500).json(error);
-      console.log(error, "error")
-    });
-});
+
 
 router.post('/:id/ingredients', (req, res) => {
   let ingredient = req.body;
