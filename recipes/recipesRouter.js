@@ -99,6 +99,21 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+router.post('/addRecipe', (req, res) => {
+  
+  let recipe = req.body
+  
+Recipes.add(recipe)
+  .then(saved => {
+    res.status(200).json(saved);
+    console.log
+  })
+  .catch(error => {
+    res.status(500).json(error);
+    console.log(error, "error")
+  });
+});
+
 
 
 
