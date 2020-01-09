@@ -263,10 +263,10 @@ https://chefportfolio2020.herokuapp.com/api/steps/delete/:id
 
 ### update ingredient
 
-https://chefportfolio2020.herokuapp.com/api/steps/update/:id
+https://chefportfolio2020.herokuapp.com/api/ingredient/update/:id
 
 ### delete ingrident
 
-https://chefportfolio2020.herokuapp.com/api/steps/update/:id
+https://chefportfolio2020.herokuapp.com/api/ingredient/delete/:id
 
 
