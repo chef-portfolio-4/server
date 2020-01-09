@@ -24,7 +24,7 @@ exports.up = function(knex) {
 
     recipe.string('description', 255).notNullable();
     
-    recipe.string('meal-type', 20).notNullable();
+    recipe.string('meal_type', 20).notNullable();
 
     recipe.string('time', 20).notNullable()
 

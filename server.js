@@ -7,6 +7,7 @@ const authRouter = require('./auth/authRouter.js');
 const profileRouter = require('./auth/authProfileRouter')
 const recipeRouter = require('./recipes/recipesRouter')
 const stepsRouter = require('./steps/stepsRouter')
+const ingredientRouter = require('./ingredients/ingredientsRouter')
 
 const server = express();
 
@@ -18,6 +19,7 @@ server.use('/api/auth', authRouter);
 server.use('/api/profile', profileRouter);
 server.use('/api/recipes', recipeRouter);
 server.use('/api/steps', stepsRouter);
+server.use('/api/ingridents', ingredientRouter);
 server.get('/', (req, res) => {
     console.log("its alive")
 })
