@@ -72,6 +72,16 @@ returns
 
 https://chefportfolio2020.herokuapp.com/api/recipes/addRecipe
 
+expects data 
+
+{
+          "name": "recipe1",
+          "description": "pass",
+          "meal-type": "lunch",
+          "time": "1 hours",
+          "chef_id": 1
+}
+
 ### get all recipes
 
 https://chefportfolio2020.herokuapp.com/api/recipes/
