@@ -67,6 +67,11 @@ returns
 
 # recipes
 
+
+### addd recipe
+
+https://chefportfolio2020.herokuapp.com/api/recipes/addRecipe
+
 ### get all recipes
 
 https://chefportfolio2020.herokuapp.com/api/recipes/
