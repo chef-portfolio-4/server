@@ -5,7 +5,8 @@ module.exports = {
   find,
   findBy,
   findById,
-  updateProfile
+  updateProfile,
+  findByUserNameLogin
 };
 
 function find() {
@@ -15,6 +16,18 @@ function find() {
 function findBy(filter) {
   return db('chefs').where(filter);
 }
+// function findByLogin(username) {
+//   return db('chefs').select('id', 'username', 'password')
+//       .where('username', 'username')
+//       .first();
+// };
+function findByUserNameLogin(userName) {
+  return db('chefs').select('id', 'username', 'password')
+      .where('username', userName)
+      .first();
+};
+
+
 
 async function add(user) {
   const id = await db('chefs').insert(user, 'id')

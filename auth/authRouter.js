@@ -20,28 +20,48 @@ router.post('/register', (req, res) => {
     });
 });
 
-router.post('/login', (req, res) => {
-  let { username, password } = req.body;
+// router.post('/login', (req, res) => {
+//   let { username, password } = req.body;
 
-  Chefs.findBy({ username })
-    .first()
-    .then(user => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        // sign token
-        const token = signToken(user); // new line
+//   Chefs.findByLogin({ username })
+//     .first()
+//     .then(user => {
+//       if (user && bcrypt.compareSync(password, user.password)) {
+//         // sign token
+//         const token = signToken(user); // new line
+//         chef
+//         // send the token
+//         res.status(200).json({
+//           userId: user.id, 
+//           username: user.username, 
+//           token
+//         });
+//       } else {
+//         res.status(401).json({ message: "Invalid Credentials" });
+//       }
+//     })
+//     .catch(error => {
+//       res.status(500).json(error);
+//       console.log(error, 'error')
+//     });
+// });
 
-        // send the token
-        res.status(200).json({
-          token, // added token as part of the response sent
-          message: `Welcome ${user.username}!`,
-        });
-      } else {
-        res.status(401).json({ message: "Invalid Credentials" });
-      }
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
+router.post('/login',  (req, res) => {
+  const { username, password } = req.body;
+
+  Chefs.findByUserNameLogin(username)
+      .then(user => {
+          if (user && bcrypt.compareSync(password, user.password)) {
+            const token = signToken(user);
+              res.status(200).json({ userId: user.id, username: user.username, token });
+          } else {
+              res.status(401).json({ error: 'Invalid credentials. Check the username and password to ensure they are correct' });
+          }
+      })
+      .catch(error => {
+              res.status(500).json(error);
+              console.log(error, 'error')
+            });
 });
 
 function signToken(user) {

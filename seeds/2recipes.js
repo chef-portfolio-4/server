@@ -4,21 +4,21 @@ exports.seed = function(knex) {
         {
           "name": "recipe1",
           "description": "pass",
-          "meal-type": "lunch",
+          "meal_type": "lunch",
           "time": "1 hours",
           "chef_id": 1
         },
         {
           "name": "recipe2",
           "description": "pass",
-          "meal-type": "dinner",
+          "meal_type": "dinner",
           "time": "3 hours",
           "chef_id": 1
         },
         {
           "name": "recipe3",
           "description": "pass",
-          "meal-type": "breakFeast",
+          "meal_type": "breakFeast",
           "time": "2 hours",
           "chef_id": 1
         },
