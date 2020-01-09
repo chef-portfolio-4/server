@@ -9,7 +9,9 @@ module.exports = {
   getAll,
   findRecipeSteps,
   findRecipeIngredients,
-  addIngredient
+  addIngredient,
+  deleted
+
 };
 function find() {
     return db('recipes');
@@ -74,4 +76,10 @@ async function update(id, changes){
     return connectTables(recipe_id, ingredient_id[0])
   })
   
+}
+
+function deleted(id){
+  return knex('recipes')
+  .where('id', id)
+  .del()
 }

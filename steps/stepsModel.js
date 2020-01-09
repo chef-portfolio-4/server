@@ -5,7 +5,8 @@ module.exports = {
   find,
   findById,
   getRecipeSteps,
-  update
+  update,
+  deleted
 
 };
 function find() {
@@ -35,4 +36,10 @@ async function update(id, changes){
       .where({id: id})
       .update(changes)
     return findById(id[0])
+  }
+  
+  function deleted(id){
+    return knex('steps')
+    .where('id', id)
+    .del()
   }
