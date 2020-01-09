@@ -253,6 +253,20 @@ https://chefportfolio2020.herokuapp.com/api/recipes/steps/:id
   }
 ]
 
+### update step
 
+https://chefportfolio2020.herokuapp.com/api/steps/update/:id
+
+### delete step
+
+https://chefportfolio2020.herokuapp.com/api/steps/delete/:id
+
+### update ingredient
+
+https://chefportfolio2020.herokuapp.com/api/steps/update/:id
+
+### delete ingrident
+
+https://chefportfolio2020.herokuapp.com/api/steps/update/:id
 
 

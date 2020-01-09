@@ -58,7 +58,7 @@ router.get('/steps/:id', (req, res) => {
 router.post('/:id', (req, res) => {
   let recipe = req.body;
     let id = req.params.id
-  Recipes.updateProfile(id, recipe)
+  Recipes.update(id, recipe)
     .then(saved => {
       res.status(201).json(saved);
       console.log
@@ -78,6 +78,20 @@ router.post('/:id/ingredients', (req, res) => {
     .then(saved => {
       res.status(201).json(saved);
       console.log('its works')
+    })
+    .catch(error => {
+      res.status(500).json(error);
+      console.log(error, "error")
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  
+    let id = req.params.id
+  Recipes.deleted(id)
+    .then(saved => {
+      res.status(200).json(saved);
+      console.log
     })
     .catch(error => {
       res.status(500).json(error);

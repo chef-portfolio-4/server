@@ -50,6 +50,19 @@ router.post('/update/:id', (req, res) => {
       console.log(error, "error")
     });
 });
+router.post('/delete/:id', (req, res) => {
+  
+    let id = req.params.id
+  steps.deleted(id)
+    .then(saved => {
+      res.status(200).json(saved);
+      
+    })
+    .catch(error => {
+      res.status(500).json(error);
+      console.log(error, "error")
+    });
+});
 
 
 
