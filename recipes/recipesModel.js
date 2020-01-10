@@ -48,11 +48,17 @@ function findRecipeSteps(id) {
       .first();
   }
 
-async function add(recipe) {
-  const id = await db('recipes').insert(recipe, 'id')
-  console.log(id, 'id')
-  return findById(id[0]);
-}
+// async function add(recipe) {
+//   const id = await db('recipes').insert(recipe, 'id')
+//   console.log(id, 'id')
+//   return findById(id[0]);
+// }
+
+function add(project) {
+  return db('recipes')
+      .insert(project, 'id')
+      .then(([id]) => findById(id))
+};
 async function getChefRecipes (id){
     return await db('recipes')
     .where({chef_id: id})

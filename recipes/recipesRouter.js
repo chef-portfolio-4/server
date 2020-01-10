@@ -55,7 +55,7 @@ router.get('/steps/:id', (req, res) => {
   });
 });
 
-router.post('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   let recipe = req.body;
     let id = req.params.id
   Recipes.update(id, recipe)
@@ -99,14 +99,14 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.post('/addRecipe', (req, res) => {
+router.post('/', (req, res) => {
   
   let recipe = req.body
   
 Recipes.add(recipe)
   .then(saved => {
-    res.status(200).json(saved);
-    console.log
+    res.status(204).json(saved);
+    console.log('saved', saved)
   })
   .catch(error => {
     res.status(500).json(error);
