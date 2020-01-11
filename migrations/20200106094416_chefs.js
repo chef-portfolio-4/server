@@ -18,7 +18,7 @@ exports.up = function(knex) {
     recipe.increments()
 
     recipe
-    .string('name', 10)
+    .string('name', 36)
     .notNullable()
     
 

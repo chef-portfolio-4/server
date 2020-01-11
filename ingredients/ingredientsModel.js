@@ -24,7 +24,7 @@ async function update(id, changes){
   }
 
   function deleted(id){
-    return knex('recipe_ingredients')
+    return db('recipe_ingredients')
     .where('id', recipe_id)
     .del()
   }
