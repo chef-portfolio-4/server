@@ -23,10 +23,10 @@ function findRecipeSteps(id) {
       .where('steps.recipe_id', id)
   }
 
-  function findRecipeSteps(id) {
-    return db("steps")
-      .where('steps.recipe_id', id)
-  }
+  // function findRecipeSteps(id) {
+  //   return db("steps")
+  //     .where('steps.recipe_id', id)
+  // }
 
   function findRecipeIngredients(id){
     return db('recipe_ingredients')
